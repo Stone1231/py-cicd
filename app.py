@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
 
-  html = "<h3>Hello {name}</h3>" \
+  html = "<h3>Hi {name}</h3>" \
          "<b>Hostname:</b> {hostname}<br/>" \
          "<b>Now:</b> {now}<br/>"  
 
