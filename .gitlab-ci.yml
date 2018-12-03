@@ -1,0 +1,35 @@
+image: python:3.5.1
+
+build_job:
+  stage: build
+  script:
+  - echo "init"
+  - pip install --upgrade pip
+  - pip install -r requirements.txt
+  
+test_job:
+  stage: test
+  script:
+  - echo "test"
+  - python -m unittest discover -v
+  dependencies:
+  - build_job
+
+deploy_job:
+  variables:
+    PORT: 8004
+    IMAGE_NAME: stone1231/runner_app_image:prd
+    CONTAINER_NAME: runner_app
+
+  image: docker:stable
+  # services:
+  # - docker:dind
+  stage: deploy
+  script:
+  - echo "deploy!"
+  - docker ps -a | grep " $CONTAINER_NAME$" && docker rm -f $CONTAINER_NAME
+  - docker images | sed 's/  */:/g' | grep "^$IMAGE_NAME:" && docker rmi $IMAGE_NAME
+  - docker build -t $IMAGE_NAME .  
+  # - docker login -u <username> -p <pwd> docker.io
+  - docker push $IMAGE_NAME
+  - docker run -d -p $PORT:$PORT --name $CONTAINER_NAME $IMAGE_NAME python app.py $PORT
