@@ -1,7 +1,7 @@
 node {
     def image
-    def image_test_name = "stone1231/jks_app_image:test"
-    def image_name = "stone1231/jks_app_image:prd"
+    def image_test_name = "stone1231/jks_app_img:test"
+    def image_name = "stone1231/jks_app_img:prd"
     def container_name = "jks_app"
     def port = 8000
 

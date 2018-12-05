@@ -18,7 +18,7 @@ test_job:
 deploy_job:
   variables:
     PORT: 8004
-    IMAGE_NAME: stone1231/runner_app_image:prd
+    IMAGE_NAME: stone1231/runner_app_img:prd
     CONTAINER_NAME: runner_app
 
   image: docker:stable
