@@ -13,7 +13,7 @@ def hello():
          "<b>Hostname:</b> {hostname}<br/>" \
          "<b>Now:</b> {now}<br/>"  
 
-  return html.format(name="girl", hostname=socket.gethostname(), now= datetime.now())
+  return html.format(name="World", hostname=socket.gethostname(), now= datetime.now())
 
 if __name__ == "__main__":
     
