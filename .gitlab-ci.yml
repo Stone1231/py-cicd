@@ -31,5 +31,5 @@ deploy_job:
   - docker images | sed 's/  */:/g' | grep "^$IMAGE_NAME:" && docker rmi $IMAGE_NAME
   - docker build -t $IMAGE_NAME .  
   # - docker login -u <username> -p <pwd> docker.io
-  - docker push $IMAGE_NAME
+  # - docker push $IMAGE_NAME
   - docker run -d -p $PORT:$PORT --name $CONTAINER_NAME $IMAGE_NAME python app.py $PORT
