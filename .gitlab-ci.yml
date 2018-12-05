@@ -27,7 +27,6 @@ deploy_job:
   stage: deploy
   script:
   - echo "deploy!"
-  - export DOCKER_HOST="tcp://localhost:2375"
   - docker ps -a | grep " $CONTAINER_NAME$" && docker rm -f $CONTAINER_NAME
   - docker images | sed 's/  */:/g' | grep "^$IMAGE_NAME:" && docker rmi $IMAGE_NAME
   - docker build -t $IMAGE_NAME .  
